@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Buch bearbeiten</title>
+</head>
+<body>
+    <h1>Buch bearbeiten</h1>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <label for="title">Titel:</label>
+        {{ form.title(size=32) }}<br>
+        <label for="author">Autor:</label>
+        {{ form.author(size=32) }}<br>
+        <label for="year">Jahr:</label>
+        {{ form.year(size=4) }}<br>
+        <input type="submit" value="Aktualisieren">
+    </form>
+    <a href="{{ url_for('view_books') }}">Zurück zu allen Büchern</a>
+</body>
+</html>

@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Online Bibliothek</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Willkommen in der Online Bibliothek</h1>
+    <a href="{{ url_for('add_book') }}">Buch hinzufügen</a>
+    <a href="{{ url_for('view_books') }}">Alle Bücher anzeigen</a>
+</body>
+</html>

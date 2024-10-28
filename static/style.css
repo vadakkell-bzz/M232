@@ -1,0 +1,23 @@
+body {
+    font-family: Arial, sans-serif;  /* Schriftart für die Anwendung */
+    margin: 20px;  /* Abstand um den Inhalt */
+}
+
+h1 {
+    color: #333;  /* Farbe des Haupttitels */
+}
+
+a {
+    display: block;  /* Links als Blockelemente */
+    margin-bottom: 10px;  /* Abstand zwischen den Links */
+    color: #007BFF;  /* Linkfarbe */
+    text-decoration: none;  /* Unterstreichung der Links entfernen */
+}
+
+a:hover {
+    text-decoration: underline;  /* Unterstreichung beim Hover */
+}
+
+form {
+    margin-bottom: 20px;  /* Abstand unter den Formularen */
+}

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Alle Bücher</title>
+</head>
+<body>
+    <h1>Alle Bücher</h1>
+    <form method="POST" action="{{ url_for('search_books') }}">
+        <input type="text" name="query" placeholder="Buch suchen">
+        <input type="submit" value="Suchen">
+    </form>
+
+    <!-- Button zum Zurücksetzen der Suche, nur sichtbar, wenn search_active True ist -->
+    {% if search_active %}
+        <form action="{{ url_for('view_books') }}" method="GET" style="display:inline;">
+            <button type="submit">Alle Bücher anzeigen</button>
+        </form>
+    {% endif %}
+
+    <ul>
+        {% for book in books %}
+            <li>
+                {{ book[1] }} von {{ book[2] }} ({{ book[3] }})
+                <!-- Formular zum Löschen des Buches -->
+                <form action="{{ url_for('delete_book', book_id=book[0]) }}" method="POST" style="display:inline;">
+                    <button type="submit" onclick="return confirm('Buch wirklich löschen?')">Löschen</button>
+                </form>
+                <!-- Link zum Bearbeiten des Buches -->
+                <a href="{{ url_for('edit_book', book_id=book[0]) }}">Bearbeiten</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <a href="{{ url_for('index') }}">Zurück zur Startseite</a>
+</body>
+</html>
