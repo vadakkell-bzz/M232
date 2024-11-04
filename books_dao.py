@@ -22,14 +22,15 @@ class BooksDao:
                 )
             ''')
 
-    def add_book(self, title, author, year):
+    def add_book(self, title: str, author: str, year: int):
         """Fügt ein neues Buch zur Datenbank hinzu."""
+        buch_info = (title, author, year)
         conn = self.create_connection()
         with conn:
             conn.execute('''
                 INSERT INTO books (title, author, year)
                 VALUES (?, ?, ?)
-            ''', (title, author, year))
+            ''', buch_info)
 
     def get_all_books(self):
         """Gibt alle Bücher aus der Datenbank zurück."""
@@ -39,7 +40,7 @@ class BooksDao:
         return cur.fetchall()
 
     def search_books(self, query):
-        """Gibt Bücher zurück, die dem Suchbegriff entsprechen."""
+        """Gibt Bücher zurück, die dem Suchbegriff entsprechen, indem eine SQL-Abfrage verwendet wird."""
         conn = self.create_connection()
         cur = conn.cursor()
         cur.execute('SELECT * FROM books WHERE title LIKE ?', ('%' + query + '%',))

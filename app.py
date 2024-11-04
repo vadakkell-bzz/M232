@@ -8,10 +8,12 @@ app.config['SECRET_KEY'] = 'your_secret_key'
 book_dao = BooksDao('books.db')
 book_dao.create_table()
 
+
 # Hauptseite
 @app.route('/')
 def index():
     return render_template('index.html')
+
 
 # Seite zum Hinzufügen von Büchern
 @app.route('/add', methods=['GET', 'POST'])
@@ -22,13 +24,14 @@ def add_book():
         return redirect(url_for('view_books'))
     return render_template('add_book.html', form=form)
 
+
 # Neue Route: Seite zur Suche von Büchern
 @app.route('/search', methods=['POST'])
 def search_books():
     query = request.form.get('query')
     books = book_dao.search_books(query)
-    # Rückgabe der Bücher zusammen mit dem Suchstatus
     return render_template('view_books.html', books=books, search_active=True)
+
 
 # Hauptseite zum Anzeigen aller Bücher
 @app.route('/books')
@@ -49,11 +52,13 @@ def edit_book(book_id):
         return redirect(url_for('view_books'))
     return render_template('edit_book.html', form=form, book_id=book_id)
 
+
 # Route zum Löschen eines Buches
 @app.route('/delete/<int:book_id>', methods=['POST'])
 def delete_book(book_id):
     book_dao.delete_book(book_id)
     return redirect(url_for('view_books'))
+
 
 if __name__ == '__main__':
     app.run(debug=True)
